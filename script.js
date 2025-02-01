@@ -16,6 +16,9 @@ function updateScoreDisplay() {
     scoreDisplay.textContent = `Score: ${score}`;
 }
 
+const eatSound = document.getElementById('eatSound');
+const gameOverSound = document.getElementById('gameOverSound');
+
 function generateFood() {
     food = {
         x: Math.floor(Math.random() * gridSize),
@@ -59,6 +62,7 @@ function moveSnake() {
         score++;
         updateScoreDisplay();
         generateFood();
+        eatSound.play(); // Play eat sound
     } else {
         snake.pop();
     }
@@ -70,6 +74,7 @@ function checkCollision(head) {
 
 function gameOver() {
     clearInterval(gameLoopInterval);
+    gameOverSound.play(); // Play game over sound
     alert(`Game Over! Your score: ${score}`);
     restartButton.style.display = 'block'; // Show restart button
 }
