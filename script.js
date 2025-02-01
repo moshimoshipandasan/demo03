@@ -18,6 +18,8 @@ function updateScoreDisplay() {
 
 const eatSound = document.getElementById('eatSound');
 const gameOverSound = document.getElementById('gameOverSound');
+const moveSound = document.getElementById('moveSound');
+const growSound = document.getElementById('growSound');
 
 function generateFood() {
     food = {
@@ -57,12 +59,14 @@ function moveSnake() {
     }
 
     snake.unshift(head);
+    moveSound.play(); // Play move sound
 
     if (head.x === food.x && head.y === food.y) {
         score++;
         updateScoreDisplay();
         generateFood();
         eatSound.play(); // Play eat sound
+        growSound.play(); // Play grow sound
     } else {
         snake.pop();
     }
